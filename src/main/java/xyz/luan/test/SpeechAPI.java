@@ -17,8 +17,7 @@ public class SpeechAPI {
 	private Consumer<String> consumer;
 	private final ApiStreamObserver<StreamingRecognizeRequest> requestObserver;
 
-	public SpeechAPI(int sampleRate, String credentialsFile) throws IOException {
-		InputStream credentialFile = SpeechAPI.class.getResourceAsStream(credentialsFile);
+	public SpeechAPI(int sampleRate, InputStream credentialFile) throws IOException {
 		CredentialsProvider provider = FixedCredentialsProvider.create(ServiceAccountCredentials.fromStream(credentialFile));
 		SpeechSettings settings = SpeechSettings.newBuilder().setCredentialsProvider(provider).build();
 		SpeechClient speech = SpeechClient.create(settings);
